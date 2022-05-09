@@ -70,7 +70,9 @@ const layersSetup = layersOrder => {
 };
 
 const buildSetup = () => {
+  // console.log("Testing build setup")
   if (fs.existsSync(buildDir)) {
+    // console.log("Testing build setup inside if")
     fs.rmdirSync(buildDir, { recursive: true });
   }
   fs.mkdirSync(buildDir);
@@ -81,6 +83,7 @@ const saveLayer = (_canvas, _edition) => {
 };
 
 const addMetadata = _edition => {
+  console.log("Testing metadata")
   let dateTime = Date.now();
   let tempMetadata = {
     hash: hash.join(""),
@@ -128,16 +131,27 @@ const drawLayer = async (_layer, _edition) => {
 };
 
 const createFiles = async edition => {
+  console.log("Testing createFiles")
   const layers = layersSetup(layersOrder);
 
   let numDupes = 0;
+  console.log("edition number:")
+  console.log(edition)
+  // Hardcoded edition = 1
+  // Because Edition would be a NaN when called through a command-line
+  // Worked fine in debug mode.
+  edition = 1;
  for (let i = 1; i <= edition; i++) {
+  // console.log("***************************************%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%****************")
    await layers.forEach(async (layer) => {
+    // console.log("layerssssssssssssssssssssssssssss")
      await drawLayer(layer, i);
    });
 
    let key = hash.toString();
    if (Exists.has(key)) {
+    // console.log("Testing createFiles inside if")
+
      console.log(
        `Duplicate creation for edition ${i}. Same as edition ${Exists.get(
          key
@@ -152,9 +166,15 @@ const createFiles = async edition => {
      console.log("Creating edition " + i);
    }
  }
+ console.log("Not getting rid of this relic")
+ console.log("    ")
+ console.log("      |")
+ console.log("      v")
+ console.log("mother fucker")
 };
 
 const createMetaData = () => {
+  // console.log("Create metadata")
   fs.stat(`${buildDir}/${metDataFile}`, (err) => {
     if(err == null || err.code === 'ENOENT') {
       fs.writeFileSync(`${buildDir}/${metDataFile}`, JSON.stringify(metadata, null, 2));
