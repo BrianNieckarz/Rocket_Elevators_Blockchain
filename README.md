@@ -1,70 +1,40 @@
-# Welcome to HashLips 👄
+# RocketElevators Blockchain NFT
 
-Important: There is a new repo for this code.
-[https://github.com/HashLips/hashlips_art_engine](https://github.com/HashLips/hashlips_art_engine)
+Generating RocketElevatorsNFT and IPFS code
 
-All the code in these repos was created and explained by HashLips on the main YouTube channel.
 
-To find out more please visit:
+## Application Requirements
 
-[📺 YouTube](https://www.youtube.com/channel/UC1LV4_VQGBJHTJjEWUmy8nA)
+-   [Node.js](https://nodejs.org/en/download/) (v.16.15.0)
+-   [npm](https://nodejs.org/en/download/)  (v.8.8.0)
+    -   [web3.storage@3.5.7](https://www.npmjs.com/package/web3.storage)
+    -   [process@0.11.10](https://www.npmjs.com/package/process)
+    -   [minimist@1.2.6](https://www.npmjs.com/package/minimist)
+    -   [express@4.18.1](https://www.npmjs.com/package/express)
+    -   [canvas@2.9.1](https://www.npmjs.com/package/canvas)
+-   [IPFS Desktop](https://docs.ipfs.io/install/ipfs-desktop/#windows) (optional)
+-   [Web3.storage api token](https://web3.storage/login/)
 
-[👄 Discord](https://discord.com/invite/qh6MWhMJDN)
+## Description
 
-[💬 Telegram](https://t.me/hashlipsnft)
+Generate a RocketELevatorsNFT that is stored on IPFS.
 
-[🐦 Twitter](https://twitter.com/hashlipsnft)
-
-[ℹ️ Website](https://hashlips.online/HashLips)
-
-# generative-art-node
-
-Create generative art by using the canvas api and node js
-
-![](https://github.com/HashLips/generative-art-node/blob/main/src/preview.png)
-
-## Installation
-
-```sh
-git clone https://github.com/HashLips/generative-art-node
-
-yarn install
-```
 
 ## Usage
 
-Create your different layers as folders in the 'layers' directory, and add all the layer assets in these directories. Optionally, append '_r' and '_sr' to the layer file names to make those layer files rare or super rare respectively. 
+Create your web3.storage account and generate an api token.
 
-*Example:* If you had an ball layer you would create a ball directory, and then a file might be called:
+Use this command to generate the NFT and the Content Identifier (CID)
+-   node index.mjs --token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGI5YTY2NDgxNWJiNEY2ODVGRjUyNkM2YmNhMDY0OGYwNjVmMzI3MDgiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NTE4NTI2NTEwNjIsIm5hbWUiOiJSb2NrZXRFbGV2YXRvcnNORlQifQ.-fUnqgHhoHnmHGYb_RUyqgIaPmQZKEopNXh3yMe6YYY build\1.png build\_metadata.json
 
-- `red_eye_ball_sr.png`
-- `red_eye_ball_r.png`
-- `red_eye_ball.png`
+This will generate the image, the metadata and the Content Identifier that goes along with it. You may access it with the CID via IPFS Desktop or following this link format: https://dweb.link/ipfs/YOUR_CID
 
-> Rarity is customizable in `src/config.js`.
+## Credits
 
-Once you have all your layers, go into `src/config.js` and update the `layersOrder` array to be your layer folders name in order of the back layer to the front layer.
+This project was made possible through the support of:
 
-*Example:* If you were creating a portrait design, you might have a background, then a head, a mouth, eyes, eyewear, and then headwear, so your `layersOrder` would look something like this:
-
-```js
-const layersOrder = [
-    { name: 'background', number: 1 },
-    { name: 'ball', number: 2 },
-    { name: 'eye color', number: 12 },
-    { name: 'iris', number: 3 },
-    { name: 'shine', number: 1 },
-    { name: 'bottom lid', number: 3 },
-    { name: 'top lid', number: 3 },
-];
-```
-
-The `name` of each layer object represents the name of the folder (in `/layers/`) that the images reside in. The `number` of each layer object represents the total number of image files you want to select from (possibly including blanks.) For instance, if you have three images in a layer folder and want to pick one of those each time, the `number` should be `3`. If you have a single image in a layer that you want to increase the rarity of to 1 in 100, the `number` for that layer should be `100`. In this case, 99 times out of 100, you will get a completely transparent layer.
-
-Then optionally, update your `format` size, ie the outputted image size, and the defaultEdition, which is the amount of variation outputted.
-
-When you are all ready, run the following command and your outputted art will be in the `build` directory:
-
-```sh
-npm run build
-```
+-   Perry Sawatzky
+-   Mathieu Houde
+-   Patrick Thibault
+-   Francis Patry-Jessop
+-   CodeBoxx School of Technology Community
